@@ -1,0 +1,13 @@
+---
+- name: start openyuma
+  docker:
+    name: openyuma
+    state: restarted
+    image: lpenz/openyuma
+    ports: 3830:830
+
+- name: wait for netconf port
+  wait_for:
+    host: 127.0.0.1
+    port: 3830
+    delay: 5
