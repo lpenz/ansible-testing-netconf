@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - openyuma-begin
+    - edit-config-ntp
+    - openyuma-end

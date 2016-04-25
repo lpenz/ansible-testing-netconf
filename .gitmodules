@@ -1,0 +1,7 @@
+[submodule "ansible-modules-extras"]
+	path = ansible-modules-extras
+	url = https://github.com/lpenz/ansible-modules-extras.git
+	branch = netconf
+[submodule "ansible"]
+	path = ansible
+	url = https://github.com/ansible/ansible.git

@@ -1,0 +1,14 @@
+language: python
+python:
+  - "2.6"
+sudo: required
+services:
+  - docker
+before_install:
+  - sudo pip install docker-py==1.5.0 ncclient
+  - printf 'Hosts *\n\tStrictHostKeyCheckin no\n\tUserKnownHostsFile /dev/null\n' >> ~/.ssh/config
+  - git submodule update --init --recursive
+  - . ./ansible/hacking/env-setup
+script:
+  - cd playbooks
+  - ansible-playbook --module-path=$PWD/../ansible-modules-extras/network/netconf -i localhost, -c local playbook-openyuma.yml
