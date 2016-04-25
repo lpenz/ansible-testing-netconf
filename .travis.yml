@@ -12,3 +12,4 @@ before_install:
 script:
   - cd playbooks
   - ansible-playbook --module-path=$PWD/../ansible-modules-extras/network/netconf -i localhost, -c local playbook-openyuma.yml
+  - ansible-playbook --module-path=$PWD/../ansible-modules-extras/network/netconf -i localhost, -c local playbook-netopeer.yml

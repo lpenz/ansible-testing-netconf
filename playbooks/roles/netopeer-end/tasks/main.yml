@@ -1,0 +1,6 @@
+---
+- name: finalize netopeer
+  docker:
+    state: absent
+    name: netopeer
+    image: lpenz/netopeer

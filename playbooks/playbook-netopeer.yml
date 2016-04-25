@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - netopeer-begin
+    - edit-config-ntp
+    - netopeer-end
