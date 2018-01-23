@@ -1,0 +1,4 @@
+---
+- hosts: all
+  roles:
+    - edit-config-ntp-netconfconn

@@ -1,0 +1,75 @@
+---
+- name: set ntp server in the device
+  netconf_config:
+    xml: |
+        <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+                <ntp>
+                    <enabled>true</enabled>
+                    <server>
+                        <name>ntp1</name>
+                        <udp><address>127.0.0.1</address></udp>
+                    </server>
+                </ntp>
+            </system>
+        </config>
+  register: set_ntp1
+
+- name: check ntp server in the device
+  netconf_config:
+    xml: |
+        <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+                <ntp>
+                    <enabled>true</enabled>
+                    <server>
+                        <name>ntp1</name>
+                        <udp><address>127.0.0.1</address></udp>
+                    </server>
+                </ntp>
+            </system>
+        </config>
+  register: set_ntp2
+
+- assert:
+    that:
+      - "set_ntp1.changed == true"
+      - "set_ntp2.changed == false"
+
+# unset
+
+- name: unset ntp server in the device
+  netconf_config:
+    xml: |
+        <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+                <ntp>
+                    <enabled>false</enabled>
+                    <server operation="remove">
+                        <name>ntp1</name>
+                    </server>
+                </ntp>
+            </system>
+        </config>
+  register: unset_ntp1
+
+- name: check unset ntp server in the device
+  netconf_config:
+    xml: |
+        <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
+                <ntp>
+                    <enabled>false</enabled>
+                    <server operation="remove">
+                        <name>ntp1</name>
+                    </server>
+                </ntp>
+            </system>
+        </config>
+  register: unset_ntp2
+
+- assert:
+    that:
+      - "unset_ntp1.changed == true"
+      - "unset_ntp2.changed == false"
+

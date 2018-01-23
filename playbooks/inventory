@@ -1,0 +1,2 @@
+[all]
+localhost ansible_connection=netconf ansible_port=3830 ansible_user=admin ansible_password=admin
