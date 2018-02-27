@@ -1,8 +1,12 @@
 ---
+- name: pull an image
+  docker_image:
+    name: lpenz/openyuma
+
 - name: start openyuma
-  docker:
+  docker_container:
     name: openyuma
-    state: restarted
+    state: started
     image: lpenz/openyuma
     ports: 3830:830
 

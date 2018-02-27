@@ -1,6 +1,6 @@
 ---
 - name: finalize openyuma
-  docker:
+  docker_container:
     state: absent
     name: openyuma
     image: lpenz/openyuma
